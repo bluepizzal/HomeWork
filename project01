@@ -1,0 +1,90 @@
+#include <iostream>
+#include <vector>
+#include<string> // C++ string Class
+#include<vector>
+using namespace std;
+
+vector<int> Number;
+
+char Command[6];
+
+void FindValue(char ch, int *n)
+{
+	//m==min 
+	//x==max
+
+	int MinIndex;
+	int MaxIndex;
+
+
+	if (ch == 'm')
+	{
+		int min = 999;
+
+		for (int i = 0; i < Number.size(); i++)
+		{
+			if (min > Number[i])
+			{
+				min = Number[i];
+				MinIndex = i;
+			}
+		}
+
+		cout << min;
+
+		Number.erase(Number.begin() + MinIndex);
+
+		*n-=1;
+	}
+
+	else if (ch == 'x')
+	{
+		int max = 0;
+
+		for (int i = 0; i < Number.size(); i++)
+		{
+			if (max < Number[i])
+			{
+				max = Number[i];
+				MaxIndex = i;
+			}
+		}
+
+		cout << max;
+
+		Number.erase(Number.begin() + MaxIndex);
+
+		*n-=1;
+	}
+
+
+}
+
+int main()
+{
+	
+	int n = 6;
+
+	for (int i = 0; i < 6; i++)
+	{
+		int temp;
+		cin >> temp;
+
+		Number.push_back(temp);
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		cin >> Command[i];
+	}
+
+
+	for (int i = 0; i < 6; i++)
+	{
+		FindValue(Command[i],&n);
+
+	}
+
+	
+	return 0;
+}
